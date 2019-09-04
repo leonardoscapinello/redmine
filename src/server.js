@@ -1,6 +1,6 @@
 import app from './app';
 
-const port = 3334;
+const port = process.env.PORT || 3030;
 
 app.listen(port);
 
