@@ -9,13 +9,10 @@ export default async (req, res, next) => {
     return res.status(401).json({ error: 'You must provide authorization key' });
   }
 
-
   const authorization = req.headers['authorization'];
   //console.log('authorization', authorization);
 
   try {
-
-
 
     if(authorization === authConfig.secret){
       return next();

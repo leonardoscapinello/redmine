@@ -1,14 +1,25 @@
-import sysaid from '../services/sysaid';
+import SysAidApi from '../services/sysaid';
+
 
 class SysAidController {
 
-    async index(req, res) {
-       
-        await sysaid.connect().then(req, res => {
-            console.log(req.body);
-            res.status(200).json({ok:true});
+    constructor(){        
+        SysAidApi.connect();
+    }
+
+    async index(req, res) {      
+
+        const { id } = req.params;
+
+        await SysAidApi.getSRs(id)
+        .then(response => {
+            return res.status(200).json({response});
+        }).catch(error => {
+            return res.status(400).json({error});
         });
-        
+       
+
+
     }
 
 }

@@ -8,7 +8,7 @@ const routes = new Router();
 routes.use(authMiddleware);
 
 
-routes.get('/sysaid', SysAidController.index);
+routes.get('/sysaid/:id', SysAidController.index);
 
 
 
