@@ -7,19 +7,23 @@ class SysAidController {
         SysAidApi.connect();
     }
 
-    async index(req, res) {      
-
-        const { id } = req.params;
-
-        await SysAidApi.getSRs(id)
+    async index(req, res) {
+        await SysAidApi.getSRs()
         .then(response => {
             return res.status(200).json({response});
         }).catch(error => {
             return res.status(400).json({error});
         });
-       
+    }
 
-
+    async show(req, res) {
+        const { id } = req.params;
+        await SysAidApi.getUniqueSR(id)
+        .then(response => {
+            return res.status(200).json({response});
+        }).catch(error => {
+            return res.status(400).json({error});
+        });
     }
 
 }
