@@ -26,6 +26,17 @@ class SysAidController {
         });
     }
 
+    async update(req, res) {
+        const { id } = req.params;
+        const { json } = req.params;
+        await SysAidApi.updateSR(id)
+        .then(response => {
+            return res.status(200).json({response});
+        }).catch(error => {
+            return res.status(400).json({error});
+        });
+    }
+
 }
 
 export default new SysAidController();

@@ -1,14 +1,14 @@
-import SysAidApi from '../services/sysaid';
+import RedmineApi from '../services/redmine';
 
 
-class SysAidController {
+class RedmineController {
 
     constructor(){        
-        SysAidApi.connect();
+        //RedmineApi.connect();
     }
 
     async index(req, res) {
-        await SysAidApi.getSRs()
+        await RedmineApi.getIssues()
         .then(response => {
             return res.status(200).json({response});
         }).catch(error => {
@@ -17,8 +17,8 @@ class SysAidController {
     }
 
     async show(req, res) {
-        const { id } = req.params;
-        await SysAidApi.getUniqueSR(id)
+        const { id_issue } = req.params;
+        await RedmineApi.getIssue(id_issue)
         .then(response => {
             return res.status(200).json({response});
         }).catch(error => {
@@ -28,4 +28,4 @@ class SysAidController {
 
 }
 
-export default new SysAidController();
+export default new RedmineController();
