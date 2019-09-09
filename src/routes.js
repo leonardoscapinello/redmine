@@ -10,6 +10,7 @@ routes.use(authMiddleware);
 
 routes.get('/sysaid', SysAidController.index);
 routes.get('/sysaid/:id', SysAidController.show);
+routes.put('/sysaid/:id', SysAidController.update);
 
 
 

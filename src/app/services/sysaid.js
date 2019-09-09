@@ -39,10 +39,9 @@ var session_id = null;
                     headers: {
                         Cookie: session_id
                     }
-                }     
+                }
                 return new Promise(function (resolve, reject) {
-                    request(options, function (error, res, body) {
-                        
+                    request(options, function (error, res, body) {                        
                         if (!error && res.statusCode == 200) {
                             resolve(JSON.parse(body));
                         } else {
@@ -74,7 +73,31 @@ var session_id = null;
                     }
                 });
             });           
+        },
+
+        updateSR: async (id_sr = 1, json = {}) => {       
+            const url = `${sysaidConf.server.main}${sysaidConf.server.sr}/${id_sr}`;
+            console.log(`Connecting to remote server on: ${url}`);
+            var options = {
+                url,
+                method: 'PUT',
+                headers: {
+                    Cookie: session_id,
+                },
+                json
+            }        
+            return new Promise(function (resolve, reject) {
+                request(options, function (error, res, body) {
+                    if (!error && res.statusCode == 200) {
+                        console.log
+                        resolve(JSON.parse(body));
+                    } else {
+                        reject(error);
+                    }
+                });
+            });           
         }
+
 
     }
  }
