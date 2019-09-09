@@ -45,10 +45,10 @@ const RedmineApi = function(){
                 });
             });
         },
-        createIssue: async (id_issue = 1) => {
-            var options = {
-                uri: `${redmineConf.server}/issues/${id_issue}.json`,
-                method: 'GET',
+        createIssue: async (issueJson) => {
+            /*var options = {
+                uri: `${redmineConf.server}/issues.json`,
+                method: 'POST',
                 headers: {
                     'X-Redmine-API-Key': `${redmineConf.api_key}`
                 }
@@ -62,7 +62,8 @@ const RedmineApi = function(){
                         reject(error);
                     }
                 });
-            });
+            });*/
+            console.log('issueJson', issueJson);
         }
 
     }

@@ -26,6 +26,16 @@ class RedmineController {
         });
     }
 
+    async store(req, res) {
+        const { issue } = req.body;
+        await RedmineApi.createIssue(issue)
+        .then(response => {
+            return res.status(200).json({response});
+        }).catch(error => {
+            return res.status(400).json({error});
+        });
+    }
+
 }
 
 export default new RedmineController();
