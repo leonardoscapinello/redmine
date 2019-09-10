@@ -1,13 +1,11 @@
-import redmineConf from '../../config/redmine';
+import schedulerConf from '../../config/scheduler';
 import request from 'request';
 
-const request = require('request');
-var session_id = null;
-
-const RedmineApi = function(){
+const SchedulerService = function(){
 
     return {
-        getIssues: async () => {
+        
+        initialize: async () => {
             var options = {
                 uri: `${redmineConf.server}/issues.json${redmineConf.filters}`,
                 method: 'GET',
@@ -26,52 +24,10 @@ const RedmineApi = function(){
                 });
             });
         },
-        getIssue: async (id_issue = 1) => {
-            var options = {
-                uri: `${redmineConf.server}/issues/${id_issue}.json`,
-                method: 'GET',
-                headers: {
-                    'X-Redmine-API-Key': `${redmineConf.api_key}`
-                }
-            };            
-            return new Promise(function (resolve, reject) {
-                request(options, function (error, res, body) {
-                    if (!error && res.statusCode == 200) {
-                        resolve(JSON.parse(body));
-                    } else {
-                        console.log(error);
-                        reject(error);
-                    }
-                });
-            });
-        },
-        createIssue: async (json) => {
-            var options = {
-                uri: `${redmineConf.server}/issues.json`,
-                method: 'POST',
-                headers: {
-                    'X-Redmine-API-Key': `${redmineConf.api_key}`
-                },
-                json
-            };   
-            console.log('options', options);  
-            console.log('json', json);         
-            /*return new Promise(function (resolve, reject) {
-                request(options, function (error, res, body) {
-                    if (!error && res.statusCode == 200) {
-                        resolve(JSON.parse(body));
-                    } else {
-                        console.log(error);
-                        reject(error);
-                    }
-                });
-            });
-            */
-        }
 
     }
 
 
 }
 
-export default new RedmineApi();
+export default new SchedulerService();
