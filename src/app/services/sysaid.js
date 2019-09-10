@@ -32,7 +32,7 @@ var session_id = null;
 
         getSRs: async () => {
             const url = `${sysaidConf.server.main}${sysaidConf.server.sr}${sysaidConf.queryParams.fields}`;
-            console.log(`Connecting to remote server on: ${url}`);
+            //console.log(`Connecting to remote server on: ${url}`);
             try{
                 var options = {
                     url,
@@ -56,7 +56,7 @@ var session_id = null;
 
         getUniqueSR: async (id_sr = 1) => {       
             const url = `${sysaidConf.server.main}${sysaidConf.server.sr}/${id_sr}${sysaidConf.queryParams.fields}`;
-            console.log(`Connecting to remote server on: ${url}`);
+            //console.log(`Connecting to remote server on: ${url}`);
             var options = {
                 url,
                 headers: {
@@ -65,8 +65,7 @@ var session_id = null;
             }        
             return new Promise(function (resolve, reject) {
                 request(options, function (error, res, body) {
-                    if (!error && res.statusCode == 200) {
-                        console.log
+                    if (!error && res.statusCode == 200) {                        
                         resolve(JSON.parse(body));
                     } else {
                         reject(error);
@@ -77,7 +76,7 @@ var session_id = null;
 
         updateSR: async (id_sr = 1, json = {}) => {       
             const url = `${sysaidConf.server.main}${sysaidConf.server.sr}/${id_sr}`;
-            console.log(`Connecting to remote server on: ${url}`);
+            //console.log(`Connecting to remote server on: ${url}`);
             var options = {
                 url,
                 method: 'PUT',
@@ -88,8 +87,7 @@ var session_id = null;
             }        
             return new Promise(function (resolve, reject) {
                 request(options, function (error, res, body) {
-                    if (!error && res.statusCode == 200) {
-                        console.log
+                    if (!error && res.statusCode == 200) {                        
                         resolve(JSON.parse(body));
                     } else {
                         reject(error);

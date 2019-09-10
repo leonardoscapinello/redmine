@@ -7,6 +7,8 @@ const RedmineApi = function(){
 
     return {
         getIssues: async () => {
+            const url = `${redmineConf.server}/issues.json${redmineConf.filters}`;            
+            //console.log(`Connecting to remote server on: ${url}`);
             var options = {
                 uri: `${redmineConf.server}/issues.json${redmineConf.filters}`,
                 method: 'GET',
@@ -26,6 +28,8 @@ const RedmineApi = function(){
             });
         },
         getIssue: async (id_issue = 1) => {
+            const url = `${redmineConf.server}/issues/${id_issue}.json`;            
+            //console.log(`Connecting to remote server on: ${url}`);
             var options = {
                 uri: `${redmineConf.server}/issues/${id_issue}.json`,
                 method: 'GET',
@@ -53,8 +57,8 @@ const RedmineApi = function(){
                 },
                 json
             };   
-            console.log('options', options);  
-            console.log('json', json);         
+            //console.log('options', options);  
+            //console.log('json', json);         
             /*return new Promise(function (resolve, reject) {
                 request(options, function (error, res, body) {
                     if (!error && res.statusCode == 200) {

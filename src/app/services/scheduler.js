@@ -7,6 +7,7 @@ import dateformat from 'dateformat';
 
 let interations = 0;
 var serviceRecords = [];
+var issueRecords = [];
 
 const SchedulerService = function(){
 
@@ -38,15 +39,19 @@ const SchedulerService = function(){
         },
 
         execute: async () => {             
-            return SchedulerService()
-            .getRecords2Sync()
-            .catch(error => {console.log(error)}); 
+             
+            return  SchedulerService().getRecords2Sync()
+                    .then(() => {
+                        SchedulerService().getIssues()
+                        .then(() => {}).catch(error => {console.log({error})});
+                    }).catch(error => {console.log({error})});
+
         },
 
         getRecords2Sync: async () => {
             serviceRecords = [];
             var options = {
-                url: `http://localhost:3031/sysaid`,
+                url: `http://localhost:${authConf.serverPort}/sysaid`,
                 method: 'GET',
                 headers: {
                     authorization: `${authConf.secret}`
@@ -55,10 +60,8 @@ const SchedulerService = function(){
             return new Promise(function (resolve, reject) {
                 request(options, function (error, res, body) {
                     if (!error && res.statusCode == 200) {
-                        const srs = JSON.parse(body);
-                        
+                        const srs = JSON.parse(body);                        
                         const response = srs['response'];
-
                         for(let i =0;i < response.length;i++){
                             const { id, info } = response[i];
                             var status = "";
@@ -79,10 +82,7 @@ const SchedulerService = function(){
                                 }
                             }
                         }
-                        
-
                         console.log(serviceRecords);
-                        
                         resolve(serviceRecords);
                     } else {
                         //console.log(error);
@@ -90,10 +90,47 @@ const SchedulerService = function(){
                     }
                 });
             });    
+        },
+
+        getIssues : async () => {            
+               
+            issueRecords = [];     
+            return new Promise(function(resolve, reject) {
+                console.log('more than zero');
+                for (let i = 0; i < serviceRecords.length; i++) {            
+                    const { id, status, issueId } = serviceRecords[i];                                 
+                    var options = {
+                        url: `http://localhost:${authConf.serverPort}/redmine/${issueId}`,
+                        method: 'GET',
+                        headers: {
+                            authorization: `${authConf.secret}`
+                        }
+                    }            
+                    request(options, function(error, res, body) {
+                        if (!error && res.statusCode == 200) {
+                            
+                            const issues = JSON.parse(body);                     
+                            const { issue } = issues.response;
+                            const { id, status, custom_fields  } = issue;
+
+                            issueRecords.push({id, status, custom_fields});
+                            console.log(issueRecords);
+                            resolve(issueRecords);
+
+                        } else {
+                            reject(error);
+                        }
+                    });            
+                }            
+                console.log(issueRecords);
+                
+            });
+            
+            
+            
         }
 
-
-
+        
     }
 
 

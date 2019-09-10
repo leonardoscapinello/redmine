@@ -1,6 +1,7 @@
 import app from './app';
+import auth from './config/auth'
 
-const port = process.env.PORT || 3031;
+const port = process.env.PORT || auth.serverPort;
 
 app.listen(port);
 
