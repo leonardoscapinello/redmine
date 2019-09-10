@@ -7,7 +7,7 @@
 //}
 
 module.exports = {
-  api_key: 'e1684cafd90917710c5f8b59fb3cabd86af2c845',
+  api_key: 'af9ea359529a2ca62f6c2a5cbb2cc17288f23822',
   server: 'https://servicedesk.ebs-it.services',
   username: 'teste.integra.sae',
   password: '12345678',

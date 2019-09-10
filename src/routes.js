@@ -6,15 +6,24 @@ import RedmineController from './app/controllers/RedmineController';
 
 const routes = new Router();
 
+/*
+    index() // Listagem
+    show() // Listagem de único registro
+    store() // Cadastro
+    update() // Atualização
+    delete() // Remoção
+*/
+
+
 routes.use(authMiddleware);
 
 routes.get('/sysaid', SysAidController.index);
 routes.get('/sysaid/:id', SysAidController.show);
-routes.put('/sysaid/:id', SysAidController.update);
+//routes.put('/sysaid/:id', SysAidController.update);
 
 routes.get('/redmine', RedmineController.index);
 routes.get('/redmine/:id_issue', RedmineController.show);
-//routes.put('/redmine/:id', RedmineController.update);
+routes.post('/redmine', RedmineController.store);
 
 
 export default routes;
