@@ -3,6 +3,7 @@ import { Router } from 'express';
 import authMiddleware from './app/middleware/auth';
 import SysAidController from './app/controllers/SysAidController';
 import RedmineController from './app/controllers/RedmineController';
+import SchedulerController from './app/controllers/SchedulerController';
 
 const routes = new Router();
 

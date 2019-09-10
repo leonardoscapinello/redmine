@@ -1,7 +1,6 @@
 import redmineConf from '../../config/redmine';
 import request from 'request';
 
-const request = require('request');
 var session_id = null;
 
 const RedmineApi = function(){

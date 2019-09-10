@@ -4,6 +4,7 @@ class SchedulerController {
 
     constructor(){        
         SchedulerService.initialize();
+        SchedulerService.execute();
     }
 
 
