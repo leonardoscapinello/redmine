@@ -13,14 +13,15 @@ var session_id = null;
                 uri: `${sysaidConf.server.main}${sysaidConf.server.login}`,
                 method: 'POST',
                 json: {
-                    "user_name": ".\\sysaid",
-                    "password": "power@sysaid",
+                    'user_name': `${sysaidConf.user_name}`,
+                    'password': `${sysaidConf.password}`,
                 }
             };            
             return new Promise(function (resolve, reject) {
                 request(options, function (error, res, body) {
                     if (!error && res.statusCode == 200) {
                         session_id = res.headers['set-cookie'][0];
+                        console.log('Successfully Authenticated on SysAid');
                         resolve(res.headers['set-cookie'][0]);
                     } else {
                         session_id = null;
@@ -36,6 +37,7 @@ var session_id = null;
             try{
                 var options = {
                     url,
+                    method: 'GET',
                     headers: {
                         Cookie: session_id
                     }
@@ -59,6 +61,7 @@ var session_id = null;
             //console.log(`Connecting to remote server on: ${url}`);
             var options = {
                 url,
+                method: 'GET',
                 headers: {
                     Cookie: session_id,
                 }
@@ -74,26 +77,56 @@ var session_id = null;
             });           
         },
 
-        updateSR: async (id_sr = 1, json = {}) => {       
-            const url = `${sysaidConf.server.main}${sysaidConf.server.sr}/${id_sr}`;
-            //console.log(`Connecting to remote server on: ${url}`);
-            var options = {
-                url,
-                method: 'PUT',
-                headers: {
-                    Cookie: session_id,
-                },
-                json
-            }        
-            return new Promise(function (resolve, reject) {
-                request(options, function (error, res, body) {
-                    if (!error && res.statusCode == 200) {                        
-                        resolve(JSON.parse(body));
-                    } else {
-                        reject(error);
-                    }
-                });
-            });           
+        updateSR: async (id = 1, info = {}) => {          
+            try{       
+                const url = `${sysaidConf.server.main}${sysaidConf.server.sr}/${id}`;
+                //console.log(`Connecting to remote server on: ${url}`);
+                const { status, cust_notes, solution } = info; 
+
+                if(cust_notes !== "" && cust_notes !== undefined){
+                    var requestData = JSON.parse(JSON.stringify(
+                        {
+                            id,
+                            'info':[
+                                {'key':'status', 'value': `${status}`},
+                                {'key':'solution', 'value': `${solution}`},
+                                {"key":"notes","value":[
+                                    {"userName":"sysaid_admin","createDate":Date.now(),"text":`${cust_notes}`}                            
+                                ]},
+                            ] 
+                        }
+                    ));                                  
+                }else{
+                    var requestData = JSON.parse(JSON.stringify(
+                        {
+                            id,
+                            'info':[
+                                {'key':'status', 'value': `${status}`},
+                                {'key':'solution', 'value': `${solution}`}
+                            ] 
+                        }
+                    ));  
+                }
+                var options = JSON.parse(JSON.stringify({
+                    url,
+                    method: 'PUT',
+                    headers: {
+                        Cookie: session_id,
+                    },
+                    json: requestData
+                }));  
+                return new Promise(function (resolve, reject) {
+                    request(options, function (error, res, body) {
+                        if (!error && res.statusCode == 200) {               
+                            resolve(body);
+                        } else {
+                            reject(error);
+                        }
+                    });
+                });   
+            }catch(err){
+                console.log(err);
+            } 
         }
 
 

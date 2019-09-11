@@ -20,7 +20,7 @@ routes.use(authMiddleware);
 
 routes.get('/sysaid', SysAidController.index);
 routes.get('/sysaid/:id', SysAidController.show);
-//routes.put('/sysaid/:id', SysAidController.update);
+routes.put('/sysaid/:id', SysAidController.update);
 
 routes.get('/redmine', RedmineController.index);
 routes.get('/redmine/:id_issue', RedmineController.show);

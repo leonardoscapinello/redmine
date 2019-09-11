@@ -9,14 +9,18 @@ let interations = 0;
 var serviceRecords = [];
 var issueRecords = [];
 
+var updateQueue = [];
+
 const SchedulerService = function(){
 
     const execute = (async () => { 
         
         await SchedulerService().getSR();                
         await SchedulerService().issuesPush();
-        await SchedulerService().checkChanges();
+        await SchedulerService().organizeListIndex();
+        await SchedulerService().update();
                 
+
     });
 
     return {
@@ -110,6 +114,7 @@ const SchedulerService = function(){
         },
 
         issuesPush: async () => {
+            issueRecords = [];
             // `map` over the serviceRecords and return a getIssues promise for each issueId
             const promises = serviceRecords.map(({ issueId }) => SchedulerService().getIssues(issueId));          
             // Wait for all the promises to resolve
@@ -120,8 +125,87 @@ const SchedulerService = function(){
             });
         },
 
-        checkChanges : async () => {  
-            
+        organizeListIndex : async () => {    
+            updateQueue = [];          
+            for(let sysaid = 0;sysaid < serviceRecords.length;sysaid++){
+                const sysaid_issueId = serviceRecords[sysaid].issueId;
+                for(let redmine = 0;redmine < issueRecords.length;redmine++){
+                    const redmine_id = issueRecords[redmine].id;     
+                    if(parseInt(sysaid_issueId) === redmine_id){
+                        updateQueue.push({sysaid,redmine});    
+                    }
+                }
+            }
+        },
+
+        update : async () => {  
+             // `map` over the serviceRecords and return a getIssues promise for each issueId
+             const promises = updateQueue.map(({sysaid, redmine}) => SchedulerService().updateTask(sysaid, redmine));          
+             //// Wait for all the promises to resolve
+             const data = await Promise.all(promises);          
+             //// Loop over the resolved promises and log the issueId
+             //data.forEach((issueId) => {
+             //    issueRecords.push(issueId);
+             //});
+        },
+
+
+        updateTask : async (sysaid, redmine) => {             
+            const sr = serviceRecords[sysaid];
+            const issue = issueRecords[redmine];
+
+            var id = sr.id;
+
+            var issue_id = issue.id;
+            var custom_fields = issue.custom_fields;
+            var issue_status = issue.status.id;
+
+            var issue_pending = "";
+            var issue_solution = "";
+
+            for(let i = 0;i < custom_fields.length;i++){
+                if(custom_fields[i].id === 10){
+                    issue_pending = custom_fields[i].value;
+                }
+                if(custom_fields[i].id === 11){
+                    issue_solution = custom_fields[i].value;
+                }
+            }
+
+            issue_status = parseInt(issue_status);
+
+            var status = issue_status == 1 ? 1 : (issue_status == 2 ? 3 : (issue_status == 3 ? 7 : (issue_status == 5 ? 8 : 3)));
+
+            var requestData = JSON.parse(JSON.stringify(
+                {
+                    id,
+                    status,
+                    solution: issue_solution,
+                    custom_notes: issue_pending
+                }
+            ));    
+
+            var options = {
+                url: `http://localhost:${authConf.serverPort}/sysaid/${id}`,
+                method: 'PUT',
+                headers: {
+                    authorization: `${authConf.secret}`
+                },
+                json: requestData
+            }      
+
+            console.log(issueRecords[redmine]);
+            console.log(options);
+
+            return new Promise(function (resolve, reject) {
+                request(options, function (error, res, body) {
+                    if (!error && res.statusCode == 200) {               
+                        resolve(body);
+                    } else {
+                        reject(error);
+                    }
+                });
+            });   
         },
 
         

@@ -28,8 +28,11 @@ class SysAidController {
 
     async update(req, res) {
         const { id } = req.params;
-        const { json } = req.params;
-        await SysAidApi.updateSR(id)
+        const json = req.body;
+        //const { status, cust_notes, solution } = json;
+
+        
+        await SysAidApi.updateSR(id, json)
         .then(response => {
             return res.status(200).json({response});
         }).catch(error => {
