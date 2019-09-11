@@ -11,9 +11,17 @@ var issueRecords = [];
 
 const SchedulerService = function(){
 
+    const execute = (async () => { 
+        
+        await SchedulerService().getSR();                
+        await SchedulerService().issuesPush();
+        await SchedulerService().checkChanges();
+                
+    });
+
     return {
         
-        initialize: async () => {
+        main: async () => {
             console.log(`***** Starting Scheduler on ${dateformat(new Date(), "dd/mm/yyyy HH:MM:ss")}`);
             var j = schedule.scheduleJob('*/1 * * * *', function(){
                 console.time('└─ Scheduler execution time');
@@ -24,31 +32,20 @@ const SchedulerService = function(){
                 }
                 interations++; 
                 console.log(`Job execution number: ${interations}.`);
-
-                SchedulerService().execute()
+                execute()
                 .then(response => { 
                     console.log(`└─ Job ${interations} was successfully executed.`);
                     console.log(`└─ Execution date ${dateformat(new Date(), "dd/mm/yyyy HH:MM:ss")}`);
                     console.timeEnd('└─ Scheduler execution time');
                 }).catch(error => { 
                     console.log(`└─ Job ${interations} returned error while executing.`);
+                    console.log(`└─ Error:`);
+                    console.error(error);
                 });
-                
             });
-            
         },
 
-        execute: async () => {             
-             
-            return  SchedulerService().getRecords2Sync()
-                    .then(() => {
-                        SchedulerService().getIssues()
-                        .then(() => {}).catch(error => {console.log({error})});
-                    }).catch(error => {console.log({error})});
-
-        },
-
-        getRecords2Sync: async () => {
+        getSR: async () => {
             serviceRecords = [];
             var options = {
                 url: `http://localhost:${authConf.serverPort}/sysaid`,
@@ -82,53 +79,50 @@ const SchedulerService = function(){
                                 }
                             }
                         }
-                        console.log(serviceRecords);
                         resolve(serviceRecords);
                     } else {
-                        //console.log(error);
                         reject(error);
                     }
                 });
             });    
         },
 
-        getIssues : async () => {            
-               
-            issueRecords = [];     
-            return new Promise(function(resolve, reject) {
-                console.log('more than zero');
-                for (let i = 0; i < serviceRecords.length; i++) {            
-                    const { id, status, issueId } = serviceRecords[i];                                 
-                    var options = {
-                        url: `http://localhost:${authConf.serverPort}/redmine/${issueId}`,
-                        method: 'GET',
-                        headers: {
-                            authorization: `${authConf.secret}`
-                        }
-                    }            
-                    request(options, function(error, res, body) {
-                        if (!error && res.statusCode == 200) {
-                            
-                            const issues = JSON.parse(body);                     
-                            const { issue } = issues.response;
-                            const { id, status, custom_fields  } = issue;
+        getIssues : async (issueId) => {  
+            return new Promise(function(resolve, reject) { 
+                var options = {
+                    url: `http://localhost:${authConf.serverPort}/redmine/${issueId}`,
+                    method: 'GET',
+                    headers: {
+                        authorization: `${authConf.secret}`
+                    }
+                }    
+                request(options, function(error, res, body) {
+                    if (!error && res.statusCode == 200) {
+                        const issues = JSON.parse(body);                     
+                        const { issue } = issues.response;
+                        const { id, status, custom_fields  } = issue;
+                        resolve({id, status, custom_fields});
+                    } else {
+                        reject(error);
+                    }
+                });
+            }); 
+        },
 
-                            issueRecords.push({id, status, custom_fields});
-                            console.log(issueRecords);
-                            resolve(issueRecords);
-
-                        } else {
-                            reject(error);
-                        }
-                    });            
-                }            
-                console.log(issueRecords);
-                
+        issuesPush: async () => {
+            // `map` over the serviceRecords and return a getIssues promise for each issueId
+            const promises = serviceRecords.map(({ issueId }) => SchedulerService().getIssues(issueId));          
+            // Wait for all the promises to resolve
+            const data = await Promise.all(promises);          
+            // Loop over the resolved promises and log the issueId
+            data.forEach((issueId) => {
+                issueRecords.push(issueId);
             });
+        },
+
+        checkChanges : async () => {  
             
-            
-            
-        }
+        },
 
         
     }

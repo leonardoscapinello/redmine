@@ -3,8 +3,7 @@ import SchedulerService from '../services/scheduler';
 class SchedulerController {
 
     constructor(){        
-        SchedulerService.initialize();
-        SchedulerService.execute();
+        SchedulerService.main();
     }
 
 
