@@ -54,7 +54,7 @@ const RedmineApi = function(){
         getSysAidRequest: async (id_sr) => {
             try{
                 const url = `http://localhost:${authConf.serverPort}/sysaid/${id_sr}`;            
-                console.log(`Connecting to remote server on: ${url}`);
+                //console.log(`Connecting to remote server on: ${url}`);
                 var options = {
                     url,
                     method: 'GET',
@@ -86,7 +86,7 @@ const RedmineApi = function(){
         getSysAidUser: async (id_user) => {
             try{
                 const url = `http://localhost:${authConf.serverPort}/user/${id_user}`;            
-                console.log(`Connecting to remote server on: ${url}`);
+                //console.log(`Connecting to remote server on: ${url}`);
                 var options = {
                     url,
                     method: 'GET',
@@ -189,8 +189,6 @@ const RedmineApi = function(){
                     json
                 };   
 
-
-                
 
                 //console.log(JSON.stringify(json));
     

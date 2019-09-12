@@ -163,7 +163,7 @@ var session_id = null;
 
         getUser: async (id_user) => {
             const url = `${sysaidConf.server.main}${sysaidConf.server.user}/${id_user}`;
-            console.log(url);
+            //console.log(url);
             try{
                 var options = {
                     url,
