@@ -127,6 +127,63 @@ var session_id = null;
             }catch(err){
                 console.log(err);
             } 
+        },
+
+        LinkSysAid: async (id, id_issue) => {
+            const url = `${sysaidConf.server.main}${sysaidConf.server.sr}/${id}`;   
+            console.log(`└─ Service request #${id} has been linked to Redmine issue #${id_issue}`);           
+            var requestData = JSON.parse(JSON.stringify(
+                {
+                    id,
+                    'info':[
+                        {'key':`${sysaidConf.fields.issueId}`, 'value': `${id_issue}`},                               
+                    ] 
+                }
+            ));  
+            var options = JSON.parse(JSON.stringify({
+                url,
+                method: 'PUT',
+                headers: {
+                    Cookie: session_id,
+                },
+                json: requestData
+            }));  
+            return new Promise(function (resolve, reject) {
+                request(options, function (error, res, body) {
+                    if (!error && res.statusCode == 200) {               
+                        resolve(body);
+                    } else {
+                        console.log(body);
+                        reject(error);
+                    }
+                });
+            });        
+        },
+
+
+        getUser: async (id_user) => {
+            const url = `${sysaidConf.server.main}${sysaidConf.server.user}/${id_user}`;
+            console.log(url);
+            try{
+                var options = {
+                    url,
+                    method: 'GET',
+                    headers: {
+                        Cookie: session_id
+                    }
+                }
+                return new Promise(function (resolve, reject) {
+                    request(options, function (error, res, body) {                        
+                        if (!error && res.statusCode == 200) {
+                            resolve(JSON.parse(body));
+                        } else {
+                            reject(error);
+                        }
+                    });
+                });   
+            }catch(error){
+                console.error(error);
+            }       
         }
 
 

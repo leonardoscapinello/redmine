@@ -27,8 +27,8 @@ class RedmineController {
     }
 
     async store(req, res) {
-        const { issue } = req.body;
-        await RedmineApi.createIssue(issue)
+        const { id_sr } = req.params;
+        await RedmineApi.createIssue(id_sr)
         .then(response => {
             return res.status(200).json({response});
         }).catch(error => {

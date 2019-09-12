@@ -26,16 +26,17 @@ const SchedulerService = function(){
     return {
         
         main: async () => {
-            console.log(`***** Starting Scheduler on ${dateformat(new Date(), "dd/mm/yyyy HH:MM:ss")}`);
-            var j = schedule.scheduleJob('*/1 * * * *', function(){
+            console.log(`*  Starting Scheduler on ${dateformat(new Date(), "dd/mm/yyyy HH:MM:ss")}`);
+            console.log(`└─ Scheduler timer is set to ${schedulerConf.timer.minutes} minute(s)`);
+            var j = schedule.scheduleJob(`*/${schedulerConf.timer.minutes} * * * *`, function(){
                 console.time('└─ Scheduler execution time');
                 if(interations === 0){
-                    console.log(`Setting scheduler runtime to full time.`);
+                    console.log(`└─ Setting scheduler runtime to full time.`);
                 }else{                    
                     console.log(`------------------------`);
                 }
                 interations++; 
-                console.log(`Job execution number: ${interations}.`);
+                console.log(`└─ Job execution number: ${interations}.`);
                 execute()
                 .then(response => { 
                     console.log(`└─ Job ${interations} was successfully executed.`);
@@ -194,8 +195,8 @@ const SchedulerService = function(){
                 json: requestData
             }      
 
-            console.log(issueRecords[redmine]);
-            console.log(options);
+            //console.log(issueRecords[redmine]);
+            //console.log(options);
 
             return new Promise(function (resolve, reject) {
                 request(options, function (error, res, body) {
