@@ -82,7 +82,7 @@ Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 
 #### Authentication Properties
 
-Edite o arquivo: `C:\redmine\src\config\scheduler.js`
+Edite o arquivo: `C:\redmine\src\config\auth.js`
 
 |Propriedade  | Esperado | Padrão |
 |--|--|--|
