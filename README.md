@@ -119,7 +119,7 @@ Abra o prompt de comando e execute a linha abaixo:
 
 #####  A aplicação retornará, caso houver sucesso:
 
-    *  Starting Scheduler on {dia}/{mês}/{ano} {hira}:{minuto}:{segundo}
+    *  Starting Scheduler on {dia}/{mês}/{ano} {hora}:{minuto}:{segundo}
     └─ Scheduler timer is set to {timer.minutes} minute(s)
     Application running on {application.port}
     
