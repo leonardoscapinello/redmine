@@ -88,7 +88,7 @@ Edite o arquivo: `C:\redmine\src\config\auth.js`
 |--|--|--|
 | secret | Chave de autenticação na aplicação Redmine Integration  | 60
 | expiresIn | Tempo em String **n**d de expiração, ex: 7d para 7 dias  | `@Deprecated on Redmine Integration`
-| serverPort | número para execução da api do Redmine Integration  | 3031
+| serverPort | Porta (número) para execução da api do Redmine Integration  | 3031
 
 
 
