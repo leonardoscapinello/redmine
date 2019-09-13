@@ -42,7 +42,7 @@ Instale a aplicação
 Edite o arquivo: `C:\redmine\src\config\sysaid.js`
 
 |Propriedade  | Esperado | Padrão |
-|--|--|--|--|
+|--|--|--|
 | cookie | nome do cookie de retorno da aplicação | JSESSIONID
 | *server*.main | **endereço raiz da aplicação** | http://167.86.91.120:8081
 | *server*.login | endereço da api para autenticação | /api/v1/login
@@ -81,7 +81,7 @@ Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 
 |Propriedade  | Esperado | Padrão |
-|--|--|--|--|
+|--|--|--|
 | secret | Chave de autenticação na aplicação Redmine Integration  | 60
 | expiresIn | Tempo em String **n**d de expiração, ex: 7d para 7 dias  | `@Deprecated on Redmine Integration`
 | serverPort | número para execução da api do Redmine Integration  | 3031
