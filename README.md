@@ -60,7 +60,7 @@ Edite o arquivo: `C:\redmine\src\config\sysaid.js`
 Edite o arquivo: `C:\redmine\src\config\redmine.js`
 
 |Propriedade  | Esperado | Padrão |
-|--|--|--|--|
+|--|--|--|
 | api_key | chave de autenticação na API do Redmine | af9ea359529a2ca62f6c2a5cbb2cc17288f23822
 | server | URL da aplicação | https://servicedesk.ebs-it.services
 | username | Usuário de autenticação | `@Deprecated on Redmine Integration`
@@ -72,7 +72,7 @@ Edite o arquivo: `C:\redmine\src\config\redmine.js`
 Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 
 |Propriedade  | Esperado | Padrão |
-|--|--|--|--|
+|--|--|--|
 | timer.minutes | valor inteiro em minutos para execução do Scheduler  | 60
 
 
