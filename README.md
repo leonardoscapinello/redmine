@@ -86,7 +86,7 @@ Edite o arquivo: `C:\redmine\src\config\auth.js`
 
 |Propriedade  | Esperado | Padrão |
 |--|--|--|
-| secret | Chave de autenticação na aplicação Redmine Integration  | 60
+| secret | Chave de autenticação na aplicação Redmine Integration  | 54298bc8c38abd55586d704dbf14cd08
 | expiresIn | Tempo em String **n**d de expiração, ex: 7d para 7 dias  | `@Deprecated on Redmine Integration`
 | serverPort | Porta (número) para execução da api do Redmine Integration  | 3031
 
@@ -132,6 +132,17 @@ Abra o prompt de comando e execute a linha abaixo:
 
 >  Neste documento apenas consta as interfaces de consulta externa.
 
+
+#### Autenticação
+
+Para conectar à api, use a chave de api (API Key) contida no parâmetro secret em auth.js.
+
+A aplicação espera o envio das informações abaixo, no **Header** da requisição.
+
+| Parâmetro  | Valor  |
+|--|--|
+| Content-Type | application/json | 
+| authorization  | {secret} |
 
 
 #### SysAid
