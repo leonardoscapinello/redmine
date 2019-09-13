@@ -6,6 +6,8 @@ A integração permite abrir uma *Issue* no *Redmine*, a partir de um *Registro 
 
 Outra função é um *Scheduler* que executa de tempo em tempo (de acordo com o determinado), buscando atualizações no chamado do *Redmine* e levando-as aos chamados do *SysAid*.
 
+
+
 ## Instalação
 
 > **Nota:** Execute os comandos abaixo utilizando prompt de comando padrão de Windows, com privilégios de Administrador.
@@ -34,10 +36,12 @@ Instale a aplicação
 
     yarn init
 
+
+
+
 ## Configurações
 
-
-### SysAid Properties
+#### SysAid Properties
 
 Edite o arquivo: `C:\redmine\src\config\sysaid.js`
 
@@ -55,7 +59,7 @@ Edite o arquivo: `C:\redmine\src\config\sysaid.js`
 | fields.issueIdDatabase | nome da coluna no banco de dados que receberá o id da Issue de integração | sr_cust_redmine_id |
 
 
-### Redmine Properties
+#### Redmine Properties
 
 Edite o arquivo: `C:\redmine\src\config\redmine.js`
 
@@ -67,7 +71,7 @@ Edite o arquivo: `C:\redmine\src\config\redmine.js`
 | password | Senha de autenticação | `@Deprecated on Redmine Integration`
 | filters | Parâmetros GET para consulta de chamados  | ?status_id=closed
 
-### Scheduler Properties
+#### Scheduler Properties
 
 Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 
@@ -76,7 +80,7 @@ Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 | timer.minutes | valor inteiro em minutos para execução do Scheduler  | 60
 
 
-### Authentication Properties
+#### Authentication Properties
 
 Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 
@@ -85,6 +89,8 @@ Edite o arquivo: `C:\redmine\src\config\scheduler.js`
 | secret | Chave de autenticação na aplicação Redmine Integration  | 60
 | expiresIn | Tempo em String **n**d de expiração, ex: 7d para 7 dias  | `@Deprecated on Redmine Integration`
 | serverPort | número para execução da api do Redmine Integration  | 3031
+
+
 
 
 ## Iniciando a aplicação
@@ -126,14 +132,16 @@ Abra o prompt de comando e execute a linha abaixo:
 
 >  Neste documento apenas consta as interfaces de consulta externa.
 
-### SysAid
+
+
+#### SysAid
 
 | Rota  | Método  | Parâmetros|  Retorno |
 |--|--|--|--|
 | /sysaid  | GET | - | Todos os chamados integráveis
 | /sysaid/:id  | GET | {id} - id do chamado no SysAid | Único chamado baseado no ID
 
-### Redmine Integration
+#### Redmine Integration
 
 | Rota  | Método  | Parâmetros|  Retorno |
 |--|--|--|--|
