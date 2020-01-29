@@ -1,0 +1,25 @@
+<service>
+	<id>redminesysaidintegration.exe</id>
+	<name>Redmine SysAid Integration</name>
+	<description>Integrate service requests on sysaid with redmine tickets and sync its data.</description>
+	<executable>C:\Program Files\nodejs\node.exe</executable>
+	<logmode>rotate</logmode>
+	<argument>--harmony</argument>
+	<argument>C:\nodejs\redmine\node_modules\node-windows\lib\wrapper.js</argument>
+	<argument>--file</argument>
+	<argument>c:\nodejs\redmine\build\server.js</argument>
+	<argument>--log</argument>
+	<argument>Redmine SysAid Integration wrapper</argument>
+	<argument>--grow</argument>
+	<argument>0.25</argument>
+	<argument>--wait</argument>
+	<argument>1</argument>
+	<argument>--maxrestarts</argument>
+	<argument>3</argument>
+	<argument>--abortonerror</argument>
+	<argument>n</argument>
+	<argument>--stopparentfirst</argument>
+	<argument>undefined</argument>
+	<stoptimeout>30sec</stoptimeout>
+	<workingdirectory>C:\nodejs\redmine</workingdirectory>
+</service>

@@ -1,0 +1,32 @@
+2020-01-29 16:30:31 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\nodejs\redmine\node_modules\node-windows\lib\wrapper.js --file c:\nodejs\redmine\build\server.js --log "Redmine SysAid Integration wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-01-29 16:30:31 - Started 672
+2020-01-29 16:31:12 - Stopping redminesysaidintegration.exe
+2020-01-29 16:31:12 - ProcessKill 672
+2020-01-29 16:31:12 - Found child process: 15252 Name: conhost.exe
+2020-01-29 16:31:12 - Found child process: 5972 Name: node.exe
+2020-01-29 16:31:12 - Stopping process 15252
+2020-01-29 16:31:12 - Send SIGINT 15252
+2020-01-29 16:31:12 - SIGINT to 15252 failed - Killing as fallback
+2020-01-29 16:31:12 - Stopping process 5972
+2020-01-29 16:31:12 - Send SIGINT 5972
+2020-01-29 16:31:12 - SIGINT to 5972 failed - Killing as fallback
+2020-01-29 16:31:12 - Stopping process 672
+2020-01-29 16:31:12 - Send SIGINT 672
+2020-01-29 16:31:12 - SIGINT to 672 failed - Killing as fallback
+2020-01-29 16:31:12 - Finished redminesysaidintegration.exe
+2020-01-29 16:31:24 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\nodejs\redmine\node_modules\node-windows\lib\wrapper.js --file c:\nodejs\redmine\build\server.js --log "Redmine SysAid Integration wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-01-29 16:31:24 - Started 11252
+2020-01-29 16:31:38 - Stopping redminesysaidintegration.exe
+2020-01-29 16:31:38 - ProcessKill 11252
+2020-01-29 16:31:38 - Found child process: 13972 Name: conhost.exe
+2020-01-29 16:31:38 - Found child process: 6824 Name: node.exe
+2020-01-29 16:31:39 - Stopping process 13972
+2020-01-29 16:31:39 - Send SIGINT 13972
+2020-01-29 16:31:39 - SIGINT to 13972 failed - Killing as fallback
+2020-01-29 16:31:39 - Stopping process 6824
+2020-01-29 16:31:39 - Send SIGINT 6824
+2020-01-29 16:31:39 - SIGINT to 6824 failed - Killing as fallback
+2020-01-29 16:31:39 - Stopping process 11252
+2020-01-29 16:31:39 - Send SIGINT 11252
+2020-01-29 16:31:39 - SIGINT to 11252 failed - Killing as fallback
+2020-01-29 16:31:39 - Finished redminesysaidintegration.exe

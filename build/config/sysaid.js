@@ -1,4 +1,4 @@
-module.exports = {
+"use strict";module.exports = {
   cookie: 'JSESSIONID',
   server: {
     main: 'http://167.86.91.120:8081',
