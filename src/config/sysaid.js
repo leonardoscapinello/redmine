@@ -8,7 +8,7 @@ module.exports = {
   },
   queryParams: {
     fields:
-      '?fields=title,description,problem_type,problem_sub_type,third_level_category,insert_time,close_time,assigned_group,status,CustomColumn6sr,request_user,priority,notes,cust_notes&assigned_group=1',
+      '?fields=title,description,problem_type,problem_sub_type,third_level_category,insert_time,close_time,assigned_group,status,CustomColumn6sr,request_user,priority,notes,cust_notes&assigned_group=1&status=1,2,5,6,8,22,23,24,25,26,27,30,31,32',
   },
   user_name: '.\\sysaid',
   password: 'power@sysaid',

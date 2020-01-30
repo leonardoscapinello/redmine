@@ -5,11 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "redmine-install-service": "sucrase-node ./serviceInstall.js",
-    "redmine-uninstall-service": "sucrase-node ./serviceUnistall.js",
-    "redmine": "node ./build/server.js",
-    "development": "nodemon src/server.js",
-    "debug": "nodemon src/server.js"
+    "redmine-install": "sucrase-node ./serviceInstall.js",
+    "redmine-uninstall": "sucrase-node ./serviceUnistall.js",
+    "redmine-build": "sucrase ./src -d ./build --transforms javascript,imports",
+    "redmine-start": "node ./build/server.js",
+    "redmine-debug": "nodemon src/server.js",
+    "format": "prettier-eslint —eslint-config-path ./.eslintrc.js --write '**/*.js’",
+    "lint": "eslint . —ext .js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -36,7 +38,9 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
     "nodemon": "^1.19.1",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
     "sequelize-cli": "^5.5.0",
     "sucrase": "^3.10.1"
   }

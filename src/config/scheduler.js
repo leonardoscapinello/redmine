@@ -1,5 +1,5 @@
 export default {
   timer: {
-    minutes: 60
-  }
+    minutes: 1,
+  },
 };
