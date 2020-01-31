@@ -6,3 +6,84 @@ Successfully Authenticated on SysAid
 └─ Scheduler timer is set to 60 minute(s)
 Application running on 3031
 Successfully Authenticated on SysAid
+*  Starting Scheduler on 30/01/2020 20:34:56
+└─ Scheduler timer is set to 60 minute(s)
+Application running on 3031
+Successfully Authenticated on SysAid
+└─ Setting scheduler runtime to full time.
+└─ Job execution number: 1.
+└─ Job 1 was successfully executed.
+└─ Execution date 30/01/2020 21:00:00
+└─ Scheduler execution time: 730.687ms
+------------------------
+└─ Job execution number: 2.
+└─ Job 2 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 3.
+└─ Job 3 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 4.
+└─ Job 4 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 5.
+└─ Job 5 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 6.
+└─ Job 6 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 7.
+└─ Job 7 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 8.
+└─ Job 8 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 9.
+└─ Job 9 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 10.
+└─ Job 10 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 11.
+└─ Job 11 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 12.
+└─ Job 12 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 13.
+└─ Job 13 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 14.
+└─ Job 14 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 15.
+└─ Job 15 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 16.
+└─ Job 16 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 17.
+└─ Job 17 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 18.
+└─ Job 18 returned error while executing.
+└─ Error:
+------------------------
+└─ Job execution number: 19.
+└─ Job 19 returned error while executing.
+└─ Error:

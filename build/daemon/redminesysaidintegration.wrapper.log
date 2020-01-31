@@ -30,3 +30,5 @@
 2020-01-29 16:31:39 - Send SIGINT 11252
 2020-01-29 16:31:39 - SIGINT to 11252 failed - Killing as fallback
 2020-01-29 16:31:39 - Finished redminesysaidintegration.exe
+2020-01-30 20:34:53 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\nodejs\redmine\node_modules\node-windows\lib\wrapper.js --file c:\nodejs\redmine\build\server.js --log "Redmine SysAid Integration wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-01-30 20:34:53 - Started 4860
